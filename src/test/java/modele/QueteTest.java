@@ -8,6 +8,7 @@ class QueteTest {
 
     @Test
     void extractionValeur() {
+
     }
 
     @Test
