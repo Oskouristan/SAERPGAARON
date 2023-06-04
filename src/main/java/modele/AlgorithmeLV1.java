@@ -141,12 +141,17 @@ public class AlgorithmeLV1 {
      */
 
     public void decisionExhaustive(ArrayList <Quete> provQuetes){
-        while (ilResteDesQuetes(provQuetes)) {
+        while ((ilResteDesQuetes(provQuetes)) && ((provQuetes.size()-1) <queteRealise.size()) ){
             for (Quete quete : provQuetes){
-                if (queteEstRealisable(quete)){
+                if ((queteEstRealisable(quete)) && (quete.numero!=0)){
                     quete_a_ete_realise(quete);
                 }
             }
+        }
+        for (Quete quete : provQuetes){
+            if (quete.numero ==0){
+                quete_a_ete_realise(quete);
+                return;}
         }
     }
 
@@ -174,7 +179,12 @@ public class AlgorithmeLV1 {
 
     /**
      * l'objectif de cette méthode est de finir la quête 0 le plus vite
-     * @param provQuetes
+     * pour cela elle prend en parametre une liste d'objet Quete nommé provQuetes
+     * que l'on va utiliser pour determiner les quetes à faire pour faire la quete
+     * 0 de manière gloutonne et on les stocke le numéro de ces quetes dans le champ
+     * queteAFairePourFinir de l'AlgotihmeLV1 puis tant que la quete 0 n'est pas faites
+     * on scanne la liste d'entier contenant le numéro des quetes pour faire la quete 0
+     * et on fait les quetes faisables des que possible.
      */
     public void decisionGloutonne(ArrayList <Quete> provQuetes){
         for (Quete i: provQuetes){

@@ -14,9 +14,6 @@ class QueteTest {
 
     }
 
-    @Test
-    void getListePrecondition() {
-    }
 
     @Test
     void aDesConditions() {
