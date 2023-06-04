@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AlgorithmeLV1Test {
 
@@ -70,4 +69,35 @@ public class AlgorithmeLV1Test {
         quetesFaites.add(4);
         assertEquals( quetesFaites, algorithmeLV1.queteRealise);
     }
+    @Test
+    void testQuetesRecherchePourX2(){
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1();
+        algorithmeLV1.quetesRecherchePourX2(Scenario.getProvQuetes().get(5),Scenario.getProvQuetes());
+        ArrayList <Integer> quetesAFaire = new ArrayList<>();
+        quetesAFaire.add(0);
+        quetesAFaire.add(3);
+        quetesAFaire.add(1);
+        quetesAFaire.add(4);
+        assertEquals(quetesAFaire,algorithmeLV1.quetesAFairePourFinir);
+
+        System.out.println("Work work work");
+    }
+
+    @Test
+    void testIlResteDesQuetes(){
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1();
+        assertTrue(algorithmeLV1.ilResteDesQuetes(Scenario.getProvQuetes()));
+
+        algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(0));
+        algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(1));
+        algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(2));
+        algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(3));
+        algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(4));
+        algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(5));
+
+        assertFalse(algorithmeLV1.ilResteDesQuetes(Scenario.getProvQuetes()));
+
+        System.out.println("I'm good yeah i'm feelin all right");
+    }
+
 }

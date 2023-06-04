@@ -49,6 +49,7 @@ public class Client {
         //System.out.println(ListeDesQuetes.get(18).nbDeConditionsMinimum());
         //algorithmeLV1.decisionGloutonne(ListeDesQuetes);
         //algorithmeLV1.decisionExhaustivesEtGloutonne(ListeDesQuetes);
+        algorithmeLV1.quetesRecherchePourX2(ListeDesQuetes.get(5),ListeDesQuetes);
 
         //algorithmeLV1.decisionExhaustive(ListeDesQuetes);
         System.out.println(algorithmeLV1.toString());
