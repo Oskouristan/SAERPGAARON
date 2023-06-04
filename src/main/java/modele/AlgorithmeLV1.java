@@ -46,11 +46,9 @@ public class AlgorithmeLV1 {
      * pour cela elle prend un @param quete de type Quete et @return un booléen (true si la quete est faisable false sinon)
      */
     public boolean queteEstRealisable(Quete quete){
-        if(queteRealise.contains(quete.numero) == false){
-            int[] liste = quete.getListePrecondition();
-            if(premierePartieEstRealisable(liste) && secondePartieEstRealisable(liste))
-                return true;
-            return false;
+        if( !queteRealise.contains(quete.numero)){
+            int[] liste = quete.listePrecondition;
+            return premierePartieEstRealisable(liste) && secondePartieEstRealisable(liste);
         }
         return false;
     }
