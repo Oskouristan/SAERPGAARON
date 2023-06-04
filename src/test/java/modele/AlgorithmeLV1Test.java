@@ -4,13 +4,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-
-class QueteTest {
+public class AlgorithmeLV1Test {
 
     @Test
-    void extractionValeur() {
+    void testQueteEstRealisable() {
         AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1();
         ArrayList<Quete> ListeDesQuetes = Scenario.getProvQuetes();
+        assert algorithmeLV1.queteEstRealisable(ListeDesQuetes.get(0));
+        assert algorithmeLV1.queteEstRealisable(ListeDesQuetes.get(1));
 
     }
 

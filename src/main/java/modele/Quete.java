@@ -75,7 +75,7 @@ public class Quete {
     public int nbDeConditionsMinimum(){
         if ((this.listePrecondition[0] ==0) && (this.listePrecondition[1]==0) && (this.listePrecondition[2]==0) && (this.listePrecondition[3]==0))
             return 0;
-        if (((this.listePrecondition[0] !=0) || (this.listePrecondition[1]!=0)) && ((this.listePrecondition[2]==0) || (this.listePrecondition[3]==0)))
+        if (((this.listePrecondition[0] !=0) || (this.listePrecondition[1]!=0)) && ((this.listePrecondition[2]!=0) || (this.listePrecondition[3]!=0)))
             return 2;
         else
             return 1;

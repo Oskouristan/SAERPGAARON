@@ -24,7 +24,7 @@ public class AlgorithmeLV1 {
 
         quetesAFairePourFinir = new ArrayList<>();
 
-        File planningFile = new File("ressources"+File.separator+"scenario_0.txt");
+        File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
         Scenario scenario = LectureFichierTexte.lecture(planningFile);
         System.out.println(scenario);
     }
@@ -195,17 +195,19 @@ public class AlgorithmeLV1 {
             if (i.numero == 0){
 
                 quetesRecherchePourX2(i,provQuetes);
-                System.out.println(quetesAFairePourFinir);
             }
         }
 
         while (queteRealise.contains(0) == false){
+
             for (int x : quetesAFairePourFinir){
+
                 for (Quete y  : provQuetes) {
+
                     if (y.numero == x){
+
                         if (queteEstRealisable(y)){
-                            System.out.println(y.numero);
-                            //quetesAFairePourFinir.remove(quetesAFairePourFinir.get(x));
+
                             quete_a_ete_realise(y);}
                     }
                 }

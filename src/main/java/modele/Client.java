@@ -8,13 +8,17 @@ public class Client {
     public static void main (String [] args){
         AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1();
         ArrayList<Quete> ListeDesQuetes = Scenario.getProvQuetes();
-        /**
+        algorithmeLV1.quete_a_ete_realise(ListeDesQuetes.get(4));
+
+
         System.out.println("quete 1 = "+ algorithmeLV1.queteEstRealisable(ListeDesQuetes.get(0)));
         System.out.println("quete 2 = "+ algorithmeLV1.queteEstRealisable(ListeDesQuetes.get(1)));
         System.out.println("quete 3 = "+ algorithmeLV1.queteEstRealisable(ListeDesQuetes.get(2)));
+        System.out.println("quete 3 = "+ (ListeDesQuetes.get(2)).nbDeConditionsMinimum());
+
         System.out.println("quete 4 = "+ algorithmeLV1.queteEstRealisable(ListeDesQuetes.get(3)));
         System.out.println("quete 5 = "+ algorithmeLV1.queteEstRealisable(ListeDesQuetes.get(4)));
-        */
+
         /**
         System.out.println(algorithmeLV1.temps_necessaire_se_rendre_vers_la_quete(ListeDesQuetes.get(0)));
         System.out.println(algorithmeLV1.temps_necessaire_se_rendre_vers_la_quete(ListeDesQuetes.get(1)));
