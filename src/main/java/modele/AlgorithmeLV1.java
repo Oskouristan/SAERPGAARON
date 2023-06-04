@@ -171,7 +171,25 @@ public class AlgorithmeLV1 {
      * Donner une solution efficace optimale en termes de durée. Ce genre de solution correspond à un speedrun
      */
 
-    public void decisionPlusProcheEtRapide(ArrayList <Quete> provQuetes) {
+    public void decisionExhaustive(ArrayList <Quete> provQuetes){
+        while (ilResteDesQuetes(provQuetes)) {
+            for (Quete quete : provQuetes){
+                if (queteEstRealisable(quete)){
+                    quete_a_ete_realise(quete);
+                }
+            }
+        }
+    }
+
+    /**
+     * Cette fonction decisionExhaustivesEtGloutonne prend en paramètre un objet de type
+     * ArrayList contenant des objets quetes (appelé provQuetes)
+     * Tant que la fonction ilResteDesQuetes est vrai on crée un ensemble des quêtes faisables
+     * à partir de la liste provQuetes puis on prend la première quete qu'il y a dans cet ensemble des quetes faisables
+     * et on la compare avec les quetes restantes de la liste des quetesFaisables pour voir laquelle a la
+     * distance_pour_se_rendre+ durée la plus courte puis cette quete est réalisé.
+     */
+    public void decisionExhaustivesEtGloutonne (ArrayList <Quete> provQuetes) {
         while (ilResteDesQuetes(provQuetes)) {
             ArrayList<Quete> quetesFaisables = ensemblesQuetesFaisables(provQuetes);
             Quete queteParDefaut = quetesFaisables.get(0);
@@ -186,28 +204,20 @@ public class AlgorithmeLV1 {
     }
 
     /**
-     * finir la quête 0 le plus vite
+     * l'objectif de cette méthode est de finir la quête 0 le plus vite
      * @param provQuetes
      */
     public void decisionGloutonne(ArrayList <Quete> provQuetes){
-
         for (Quete i: provQuetes){
             if (i.numero == 0){
-
                 quetesRecherchePourX2(i,provQuetes);
             }
         }
-
         while (queteRealise.contains(0) == false){
-
             for (int x : quetesAFairePourFinir){
-
                 for (Quete y  : provQuetes) {
-
                     if (y.numero == x){
-
                         if (queteEstRealisable(y)){
-
                             quete_a_ete_realise(y);}
                     }
                 }

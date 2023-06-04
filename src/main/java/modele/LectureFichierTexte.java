@@ -12,7 +12,7 @@ public class LectureFichierTexte {
             scanner = new Scanner(fichier);
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
-                System.out.println(line);
+                //System.out.println(line);
                 scenario.ajout(new Quete(line));
             }
         } catch (FileNotFoundException e) {

@@ -61,9 +61,12 @@ public class Quete {
                 ", experience=" + experience +
                 ", intitule='" + intitule + '\'' + '}';
     }
-    public int[] getListePrecondition(){
-        return this.listePrecondition;
-    }
+
+    /**
+     * la méthode aDesConditions renvoie un booléen
+     * true si l'objet this a des conditions
+     * false sinon
+     */
     public boolean aDesConditions(){
         for (int i : listePrecondition){
             if (i != 0){
@@ -72,6 +75,11 @@ public class Quete {
         }
         return false;
     }
+
+    /**
+     * Cette fonction renvoie un entier qui représente le nombre de conditions minimum de this
+     * Les seules possibilités sont soit 0,1 ou 2.
+     */
     public int nbDeConditionsMinimum(){
         if ((this.listePrecondition[0] ==0) && (this.listePrecondition[1]==0) && (this.listePrecondition[2]==0) && (this.listePrecondition[3]==0))
             return 0;
