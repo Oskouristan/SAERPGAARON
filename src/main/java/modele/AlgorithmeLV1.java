@@ -76,19 +76,16 @@ public class AlgorithmeLV1 {
         experience = experience + quete.experience;
 
         tempsPris = tempsPris + temps_necessaire_se_rendre_vers_la_quete(quete) + quete.duree;
-        //System.out.println("temps pour arriver à la quête = " +temps_necessaire_se_rendre_vers_la_quete(quete));
 
         coordonneeIa[0] = quete.coordonnee[0];
         coordonneeIa[1] = quete.coordonnee[1];
 
-        //System.out.println("duree quete = " + quete.duree);
-        //System.out.println("tempsPris = " + tempsPris);
     }
 
     public ArrayList<Quete> ensemblesQuetesFaisables(ArrayList <Quete> provQuetes){
         ArrayList<Quete> quetesFaisables = new ArrayList<>();
         for(Quete i : provQuetes){
-            if((queteRealise.contains(i.numero)== false) && (queteEstRealisable(i)==true) ){
+            if((!queteRealise.contains(i.numero)) && (queteEstRealisable(i)) ){
                 quetesFaisables.add(i);
             }
         }
@@ -97,38 +94,13 @@ public class AlgorithmeLV1 {
 
     public boolean ilResteDesQuetes(ArrayList <Quete> provQuetes){
         for (Quete i : provQuetes)
-            if(queteRealise.contains(i.numero)== false )
+            if(!queteRealise.contains(i.numero))
                 return true;
         return false;
         }
 
-
-
-    public void quetesRecherchePourX (Quete quete,ArrayList <Quete> provQuetes){
-        System.out.println(quetesAFairePourFinir);
-        if (quetesAFairePourFinir.contains(quete.numero) == false){
-            quetesAFairePourFinir.add(quete.numero);
-            if (quete.aDesConditions()){
-                // parcours recherche première condition
-                // recherche deuxième
-
-
-                for (int i : quete.listePrecondition){
-                    if (i!= 0){
-                        for (Quete j : provQuetes){
-                            if (j.numero == i ){
-                                quetesRecherchePourX(j,provQuetes);
-                                return;
-                            }
-                        }
-                        //quetesRecherchePourX();
-                    }
-                }
-            }
-        }
-    }
     public void quetesRecherchePourX2 (Quete quete,ArrayList <Quete> provQuetes){
-        if (quetesAFairePourFinir.contains(quete.numero) == false){
+        if (!quetesAFairePourFinir.contains(quete.numero)){
             quetesAFairePourFinir.add(quete.numero);
             if (quete.aDesConditions()){
                 if(quete.nbDeConditionsMinimum() ==1 ){
@@ -140,7 +112,6 @@ public class AlgorithmeLV1 {
                                     return;
                                 }
                             }
-                            //quetesRecherchePourX();
                         }
                     }
                 }
@@ -211,7 +182,7 @@ public class AlgorithmeLV1 {
                 quetesRecherchePourX2(i,provQuetes);
             }
         }
-        while (queteRealise.contains(0) == false){
+        while (!queteRealise.contains(0)){
             for (int x : quetesAFairePourFinir){
                 for (Quete y  : provQuetes) {
                     if (y.numero == x){
