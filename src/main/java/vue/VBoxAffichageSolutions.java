@@ -14,19 +14,22 @@ public class VBoxAffichageSolutions extends VBox {
     public VBoxAffichageSolutions (){
          tableDesResultats = new TableView<>();
 
-        TableColumn<AlgorithmeLV1, Quete> dateColumn1 = new TableColumn<>("Test1");
-        TableColumn <AlgorithmeLV1, Quete> dateColumn2 = new TableColumn<>("Test2");
-        TableColumn <AlgorithmeLV1, Quete> dateColumn3 = new TableColumn<>("Test3");
-        dateColumn1.setCellValueFactory(new PropertyValueFactory<>("minitest1"));
-        dateColumn2.setCellValueFactory(new PropertyValueFactory<>("minitest2"));
-        dateColumn3.setCellValueFactory(new PropertyValueFactory<>("minitest3"));
-        tableDesResultats.getColumns().add(dateColumn1);
-        tableDesResultats.getColumns().add(dateColumn2);
-        tableDesResultats.getColumns().add(dateColumn3);
+         TableColumn<AlgorithmeLV1, Quete> queteRealise = new TableColumn<>("quêtes réalisés");
+         TableColumn <AlgorithmeLV1, Quete> expTotale = new TableColumn<>("expérience totale");
+         TableColumn <AlgorithmeLV1, Quete> coordonneeIa = new TableColumn<>("coordonnée IA");
+         TableColumn <AlgorithmeLV1, Quete> tempsPris = new TableColumn<>("temps pris");
 
-        this.getChildren().add(tableDesResultats);
+         queteRealise.setCellValueFactory(new PropertyValueFactory<>("minitest1"));
+         expTotale.setCellValueFactory(new PropertyValueFactory<>("minitest2"));
+         coordonneeIa.setCellValueFactory(new PropertyValueFactory<>("minitest3"));
+         tempsPris.setCellValueFactory(new PropertyValueFactory<>("minitest3"));
 
+         tableDesResultats.getColumns().add(queteRealise);
+         tableDesResultats.getColumns().add(expTotale);
+         tableDesResultats.getColumns().add(coordonneeIa);
+         tableDesResultats.getColumns().add(tempsPris);
 
+         this.getChildren().add(tableDesResultats);
     }
     public void updateTab(AlgorithmeLV1 algorithmeLV1){
         tableDesResultats.getItems().clear();

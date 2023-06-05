@@ -11,7 +11,6 @@ public class AlgorithmeLV1 {
     Integer experience;
     Integer[] coordonneeIa;
     Integer tempsPris;
-
     ArrayList <Integer> quetesAFairePourFinir;
     public AlgorithmeLV1(File planningFile){
         tempsPris = 0;

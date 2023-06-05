@@ -7,6 +7,7 @@ public class Scenario {
     public void ajout(Quete quete){
         provQuetes.add(quete);
     }
+
     public static ArrayList<Quete> getProvQuetes(){return provQuetes;}
 
     public String toString(){
