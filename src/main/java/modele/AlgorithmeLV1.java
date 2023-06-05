@@ -13,7 +13,7 @@ public class AlgorithmeLV1 {
     Integer tempsPris;
 
     ArrayList <Integer> quetesAFairePourFinir;
-    public AlgorithmeLV1(){
+    public AlgorithmeLV1(File planningFile){
         tempsPris = 0;
         experience = 0;
         queteRealise = new ArrayList<>();
@@ -23,7 +23,7 @@ public class AlgorithmeLV1 {
 
         quetesAFairePourFinir = new ArrayList<>();
 
-        File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
+
         Scenario scenario = LectureFichierTexte.lecture(planningFile);
         System.out.println(scenario);
     }

@@ -2,6 +2,7 @@ package modele;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,7 +12,8 @@ class QueteTest {
 
     @Test
     void extractionValeur() {
-        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1();
+        File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
         ArrayList<Quete> ListeDesQuetes = Scenario.getProvQuetes();
 
     }
@@ -19,7 +21,8 @@ class QueteTest {
 
     @Test
     void aDesConditions() {
-        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1();
+        File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
         ArrayList<Quete> ListeDesQuetes = Scenario.getProvQuetes();
         assertTrue(ListeDesQuetes.get(0).aDesConditions(), "quete numéro 2 a des conditions");
         assertTrue(ListeDesQuetes.get(1).aDesConditions(), "quete numéro 5 a des conditions");
@@ -34,7 +37,8 @@ class QueteTest {
 
     @Test
     void nbDeConditionsMinimum() {
-        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1();
+        File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
         ArrayList<Quete> ListeDesQuetes = Scenario.getProvQuetes();
         assertEquals(1,ListeDesQuetes.get(0).nbDeConditionsMinimum(), "quete numéro 2 a 1 condition minimum");
         assertEquals(2,ListeDesQuetes.get(1).nbDeConditionsMinimum(), "quete numéro 5 a 2 conditions minimums");

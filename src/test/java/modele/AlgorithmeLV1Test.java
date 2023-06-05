@@ -2,6 +2,8 @@ package modele;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions.*;
+
+import java.io.File;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,7 +12,8 @@ public class AlgorithmeLV1Test {
 
     @Test
     void testQueteEstRealisable() {
-        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1();
+        File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
         ArrayList<Quete> ListeDesQuetes = Scenario.getProvQuetes();
         //assert algorithmeLV1.queteEstRealisable(ListeDesQuetes.get(0));
 
@@ -24,7 +27,8 @@ public class AlgorithmeLV1Test {
     }
     @Test
     void testTemps_necessaire_se_rendre_vers_la_quete() {
-        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1();
+        File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
         ArrayList<Quete> ListeDesQuetes = Scenario.getProvQuetes();
 
         assertEquals(4, algorithmeLV1.temps_necessaire_se_rendre_vers_la_quete(ListeDesQuetes.get(0)));
@@ -37,7 +41,8 @@ public class AlgorithmeLV1Test {
 
     @Test
     void testEnsemblesQuetesFaisables() {
-        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1();
+        File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
 
         ArrayList<Quete> quetesFaisables = new ArrayList<>();
         for (Quete i : Scenario.getProvQuetes())
@@ -49,7 +54,8 @@ public class AlgorithmeLV1Test {
 
     @Test
     void testQuete_a_ete_realise() {
-        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1();
+        File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
         algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(3));
 
         //Test pour la quete numéro 1
@@ -71,7 +77,8 @@ public class AlgorithmeLV1Test {
     }
     @Test
     void testQuetesRecherchePourX2(){
-        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1();
+        File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
         algorithmeLV1.quetesRecherchePourX2(Scenario.getProvQuetes().get(5),Scenario.getProvQuetes());
         ArrayList <Integer> quetesAFaire = new ArrayList<>();
         quetesAFaire.add(0);
@@ -85,7 +92,8 @@ public class AlgorithmeLV1Test {
 
     @Test
     void testIlResteDesQuetes(){
-        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1();
+        File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
         assertTrue(algorithmeLV1.ilResteDesQuetes(Scenario.getProvQuetes()));
 
         algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(0));

@@ -10,8 +10,9 @@ public class HBoxRoot extends HBox {
 
 
     public HBoxRoot() {
+        VBoxAffichageSolutions vBoxAffichageSolutions = new VBoxAffichageSolutions();
         Label test = new Label("test");
-        this.getChildren().add(test);
+        getChildren().add(vBoxAffichageSolutions);
     }
 }
 
