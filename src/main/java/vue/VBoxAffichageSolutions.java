@@ -7,29 +7,33 @@ import javafx.scene.layout.VBox;
 import modele.AlgorithmeLV1;
 import modele.Quete;
 
+import java.io.File;
 import java.util.TreeSet;
 
 public class VBoxAffichageSolutions extends VBox {
     TableView <AlgorithmeLV1> tableDesResultats;
     public VBoxAffichageSolutions (){
-         tableDesResultats = new TableView<>();
+        //File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
+        //AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
 
-         TableColumn<AlgorithmeLV1, Quete> queteRealise = new TableColumn<>("quêtes réalisés");
-         TableColumn <AlgorithmeLV1, Quete> expTotale = new TableColumn<>("expérience totale");
-         TableColumn <AlgorithmeLV1, Quete> coordonneeIa = new TableColumn<>("coordonnée IA");
-         TableColumn <AlgorithmeLV1, Quete> tempsPris = new TableColumn<>("temps pris");
+        tableDesResultats = new TableView<>();
 
-         queteRealise.setCellValueFactory(new PropertyValueFactory<>("minitest1"));
-         expTotale.setCellValueFactory(new PropertyValueFactory<>("minitest2"));
-         coordonneeIa.setCellValueFactory(new PropertyValueFactory<>("minitest3"));
-         tempsPris.setCellValueFactory(new PropertyValueFactory<>("minitest3"));
+        TableColumn<AlgorithmeLV1, Quete> queteRealise = new TableColumn<>("quêtes réalisés");
+        TableColumn <AlgorithmeLV1, Quete> expTotale = new TableColumn<>("expérience totale");
+        TableColumn <AlgorithmeLV1, Quete> coordonneeIa = new TableColumn<>("coordonnée IA");
+        TableColumn <AlgorithmeLV1, Quete> tempsPris = new TableColumn<>("temps pris");
 
-         tableDesResultats.getColumns().add(queteRealise);
-         tableDesResultats.getColumns().add(expTotale);
-         tableDesResultats.getColumns().add(coordonneeIa);
-         tableDesResultats.getColumns().add(tempsPris);
+        queteRealise.setCellValueFactory(new PropertyValueFactory<>("minitest1"));
+        expTotale.setCellValueFactory(new PropertyValueFactory<>("minitest2"));
+        coordonneeIa.setCellValueFactory(new PropertyValueFactory<>("minitest3"));
+        tempsPris.setCellValueFactory(new PropertyValueFactory<>("minitest3"));
 
-         this.getChildren().add(tableDesResultats);
+        tableDesResultats.getColumns().add(queteRealise);
+        tableDesResultats.getColumns().add(expTotale);
+        tableDesResultats.getColumns().add(coordonneeIa);
+        tableDesResultats.getColumns().add(tempsPris);
+
+        this.getChildren().add(tableDesResultats);
     }
     public void updateTab(AlgorithmeLV1 algorithmeLV1){
         tableDesResultats.getItems().clear();

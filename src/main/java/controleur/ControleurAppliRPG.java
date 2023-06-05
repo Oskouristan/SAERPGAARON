@@ -9,6 +9,8 @@ import modele.LectureFichierTexte;
 import vue.HBoxRoot;
 import vue.MenuScenario;
 
+import java.io.File;
+
 public class ControleurAppliRPG implements EventHandler {
 
     @Override
@@ -19,6 +21,9 @@ public class ControleurAppliRPG implements EventHandler {
 
         if (event.getSource() instanceof Button){
             System.out.println("it works");
+            File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
+            AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
+            algorithmeLV1.decisionExhaustivesEtGloutonne();
             /**
             try {
                 res = new Reservation(reservationPane.getDate(), reservationPane.getPlageHoraire(), reservationPane.getTitre());

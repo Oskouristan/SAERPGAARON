@@ -1,5 +1,7 @@
 package modele;
 
+import vue.HBoxRoot;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +14,8 @@ public class AlgorithmeLV1 {
     Integer[] coordonneeIa;
     Integer tempsPris;
     ArrayList <Integer> quetesAFairePourFinir;
+    ArrayList <Quete> listeQuetes;
+
     public AlgorithmeLV1(File planningFile){
         tempsPris = 0;
         experience = 0;
@@ -22,8 +26,8 @@ public class AlgorithmeLV1 {
 
         quetesAFairePourFinir = new ArrayList<>();
 
-
         Scenario scenario = LectureFichierTexte.lecture(planningFile);
+        listeQuetes =  scenario.getProvQuetes();
         System.out.println(scenario);
     }
 
@@ -138,15 +142,15 @@ public class AlgorithmeLV1 {
      * Donner une solution efficace optimale en termes de durée. Ce genre de solution correspond à un speedrun
      */
 
-    public void decisionExhaustive(ArrayList <Quete> provQuetes){
-        while ((ilResteDesQuetes(provQuetes)) && ((provQuetes.size()-1) <queteRealise.size()) ){
-            for (Quete quete : provQuetes){
+    public void decisionExhaustive(){
+        while ((ilResteDesQuetes(listeQuetes)) && ((listeQuetes.size()-1) <queteRealise.size()) ){
+            for (Quete quete : listeQuetes){
                 if ((queteEstRealisable(quete)) && (quete.numero!=0)){
                     quete_a_ete_realise(quete);
                 }
             }
         }
-        for (Quete quete : provQuetes){
+        for (Quete quete : listeQuetes){
             if (quete.numero ==0){
                 quete_a_ete_realise(quete);
                 return;}
@@ -154,16 +158,19 @@ public class AlgorithmeLV1 {
     }
 
     /**
-     * Cette fonction decisionExhaustivesEtGloutonne prend en paramètre un objet de type
-     * ArrayList contenant des objets quetes (appelé provQuetes)
+     * Cette fonction decisionExhaustivesEtGloutonne utilise un champ de cette classe (listeQuetes) qui est un objet de type
+     * ArrayList contenant des objets quetes
      * Tant que la fonction ilResteDesQuetes est vrai on crée un ensemble des quêtes faisables
      * à partir de la liste provQuetes puis on prend la première quete qu'il y a dans cet ensemble des quetes faisables
      * et on la compare avec les quetes restantes de la liste des quetesFaisables pour voir laquelle a la
      * distance_pour_se_rendre+ durée la plus courte puis cette quete est réalisé.
      */
-    public void decisionExhaustivesEtGloutonne (ArrayList <Quete> provQuetes) {
-        while (ilResteDesQuetes(provQuetes)) {
-            ArrayList<Quete> quetesFaisables = ensemblesQuetesFaisables(provQuetes);
+    public void decisionExhaustivesEtGloutonne () {
+        while (ilResteDesQuetes(listeQuetes)) {
+
+            HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
+
+            ArrayList<Quete> quetesFaisables = ensemblesQuetesFaisables(listeQuetes);
             Quete queteParDefaut = quetesFaisables.get(0);
 
             for (Quete i : quetesFaisables) {
@@ -177,22 +184,22 @@ public class AlgorithmeLV1 {
 
     /**
      * l'objectif de cette méthode est de finir la quête 0 le plus vite
-     * pour cela elle prend en parametre une liste d'objet Quete nommé provQuetes
+     * pour cela elle utilise le champs listeQuetes qui est une liste d'objet Quete nommé provQuetes
      * que l'on va utiliser pour determiner les quetes à faire pour faire la quete
      * 0 de manière gloutonne et on les stocke le numéro de ces quetes dans le champ
      * queteAFairePourFinir de l'AlgotihmeLV1 puis tant que la quete 0 n'est pas faites
      * on scanne la liste d'entier contenant le numéro des quetes pour faire la quete 0
      * et on fait les quetes faisables des que possible.
      */
-    public void decisionGloutonne(ArrayList <Quete> provQuetes){
-        for (Quete i: provQuetes){
+    public void decisionGloutonne(){
+        for (Quete i: listeQuetes){
             if (i.numero == 0){
-                quetesRecherchePourX2(i,provQuetes);
+                quetesRecherchePourX2(i,listeQuetes);
             }
         }
         while (!queteRealise.contains(0)){
             for (int x : quetesAFairePourFinir){
-                for (Quete y  : provQuetes) {
+                for (Quete y  : listeQuetes) {
                     if (y.numero == x){
                         if (queteEstRealisable(y)){
                             quete_a_ete_realise(y);}
