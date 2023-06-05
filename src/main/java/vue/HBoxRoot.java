@@ -8,27 +8,26 @@ import java.io.File;
 
 
 public class HBoxRoot extends HBox {
-    ControleurAppliRPG controleurAppliRPG;
-    VBoxAffichageSolutions vBoxAffichageSolutions;
-    MenuScenario menuScenario;
+    static ControleurAppliRPG controleurAppliRPG;
+    static VBoxAffichageSolutions vBoxAffichageSolutions;
+    static MenuScenario menuScenario;
 
 
     public HBoxRoot() {
         controleurAppliRPG = new ControleurAppliRPG();
-
         vBoxAffichageSolutions = new VBoxAffichageSolutions();
         menuScenario = new MenuScenario();
 
         getChildren().addAll(menuScenario,vBoxAffichageSolutions);
     }
 
-    public ControleurAppliRPG getControleur(){
+    public static ControleurAppliRPG getControleur(){
         return controleurAppliRPG;
     }
-    public VBoxAffichageSolutions getvBoxAffichageSolutions(){
+    public static VBoxAffichageSolutions getvBoxAffichageSolutions(){
         return vBoxAffichageSolutions;
     }
-    public MenuScenario getMenuScenario(){
+    public static MenuScenario getMenuScenario(){
         return menuScenario;
     }
 }
