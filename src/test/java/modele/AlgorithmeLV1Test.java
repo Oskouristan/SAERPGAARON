@@ -14,7 +14,7 @@ public class AlgorithmeLV1Test {
         ArrayList<Quete> ListeDesQuetes = Scenario.getProvQuetes();
         //assert algorithmeLV1.queteEstRealisable(ListeDesQuetes.get(0));
 
-        //assertTrue(algorithmeLV1.queteEstRealisable(ListeDesQuetes.get(1)), "nu ma asteptam");
+
         assertEquals(false, algorithmeLV1.queteEstRealisable(ListeDesQuetes.get(0)));
         assertEquals(false, algorithmeLV1.queteEstRealisable(ListeDesQuetes.get(1)));
         assertEquals(false, algorithmeLV1.queteEstRealisable(ListeDesQuetes.get(2)));

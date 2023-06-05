@@ -21,7 +21,6 @@ public class AlgorithmeLV1 {
         coordonneeIa[0] = 0;
         coordonneeIa[1] = 0;
 
-
         quetesAFairePourFinir = new ArrayList<>();
 
         File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
