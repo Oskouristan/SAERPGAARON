@@ -233,6 +233,36 @@ public class AlgorithmeLV1 {
         quete_a_ete_realise((listeQuetes.get(getIndexOfQuete0())));
     }
 
+    /**
+     * Solution efficace qui fait le nombre minimum de quetes et à chaque fois la quete la plus proche *
+     * si elle est faisable et qu'elle est nécessaire pour réaliser la quête 0.
+     */
+
+    public void decisionEfficaceEnFonctionDesQuetes(){
+        while (!queteEstRealisable(listeQuetes.get(getIndexOfQuete0()))) {
+            quetesRecherchePourX2((listeQuetes.get(getIndexOfQuete0())),listeQuetes);
+            ArrayList <Quete> listeQuetesFaisable = new ArrayList<>();
+            for(Quete i : listeQuetes){
+                if(!queteRealise.contains(i.numero) && quetesAFairePourFinir.contains(i.numero)){
+                    listeQuetesFaisable.add(i);
+                }
+            }
+            Quete queteParDefaut = (ensemblesQuetesFaisables(listeQuetesFaisable)).get(0);
+
+            for (Quete i : ensemblesQuetesFaisables(listeQuetesFaisable)){
+                if (temps_necessaire_se_rendre_vers_la_quete(i)<= temps_necessaire_se_rendre_vers_la_quete(queteParDefaut))
+                    queteParDefaut = i;
+            }
+            quete_a_ete_realise(queteParDefaut);
+
+        }
+        quete_a_ete_realise((listeQuetes.get(getIndexOfQuete0())));
+    }
+
+    /**
+     * Ma méthode coup de coeur personnellement
+     * elle retourne tous les champs de la classe algo sous forme de string
+     */
     @Override
     public String toString() {
         return "AlgorithmeLV1{" +
