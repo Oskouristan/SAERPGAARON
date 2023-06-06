@@ -7,9 +7,6 @@ import javafx.scene.layout.VBox;
 import modele.AlgorithmeLV1;
 import modele.Quete;
 
-import java.io.File;
-import java.util.TreeSet;
-
 public class VBoxAffichageSolutions extends VBox {
     TableView <AlgorithmeLV1> tableDesResultats;
     public VBoxAffichageSolutions (){

@@ -1,7 +1,7 @@
 package modele;
 
+
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class Quete {
@@ -13,6 +13,21 @@ public class Quete {
     int experience;
     String intitule;
     Scanner scanner; // fdfsdfsd
+
+    @Override
+    public String toString() {
+        return "Quete{" +
+                "numero=" + numero +
+                ", coordonnee=" + Arrays.toString(coordonnee) +
+                ", position='" + position + '\'' +
+                ", listePrecondition=" + Arrays.toString(listePrecondition) +
+                ", duree=" + duree +
+                ", experience=" + experience +
+                ", intitule='" + intitule + '\'' +
+                ", scanner=" + scanner +
+                '}';
+    }
+
     /**
     public static Comparator<Quete> byShortestTime = new Comparator<Quete>() {
         @Override
@@ -20,6 +35,9 @@ public class Quete {
             return 0;
         }
     };*/
+
+
+
     public Quete(String ligne){
         scanner = new Scanner(ligne).useDelimiter("\\|");
         while (scanner.hasNext()){
@@ -49,17 +67,6 @@ public class Quete {
             i++;}
         //System.out.println(Arrays.toString(listePrecond));
         return listePrecond;
-    }
-
-    @Override
-    public String toString() {
-        return "Quete{" +
-                "numero=" + numero +
-                ", coordonne='" + Arrays.toString(coordonnee) + '\'' +
-                ", listePreconditions='" + Arrays.toString(listePrecondition) + '\'' +
-                ", duree=" + duree +
-                ", experience=" + experience +
-                ", intitule='" + intitule + '\'' + '}';
     }
 
     /**

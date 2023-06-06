@@ -4,8 +4,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.File;
-
 public class ApplicationRPG extends Application {
     @Override
     public void start(Stage stage){

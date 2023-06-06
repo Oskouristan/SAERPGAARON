@@ -5,8 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleButton;
-import modele.*;
-import modele.LectureFichierTexte;
+import modele.AlgorithmeLV1;
 import vue.HBoxRoot;
 import vue.MenuScenario;
 
