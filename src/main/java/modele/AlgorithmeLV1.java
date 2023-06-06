@@ -31,6 +31,13 @@ public class AlgorithmeLV1 {
         System.out.println(scenario);
     }
 
+    public int getIndexOfQuete0(){
+        for (Quete i: listeQuetes){
+            if (i.numero==0)
+                return listeQuetes.indexOf(i);
+        }
+        return 0;
+    }
     public Boolean premierePartieEstRealisable(int[] tableau) {
         return (tableau[0] == 0 && tableau[1] == 0)
                 ||
@@ -48,7 +55,7 @@ public class AlgorithmeLV1 {
      * pour cela elle prend un @param quete de type Quete et @return un booléen (true si la quete est faisable false sinon)
      */
     public boolean queteEstRealisable(Quete quete){
-        if( !queteRealise.contains(quete.numero)){
+        if(!queteRealise.contains(quete.numero)){
             int[] liste = quete.listePrecondition;
             return premierePartieEstRealisable(liste) && secondePartieEstRealisable(liste);
         }
@@ -177,6 +184,7 @@ public class AlgorithmeLV1 {
                 if ((queteParDefaut.duree + temps_necessaire_se_rendre_vers_la_quete(queteParDefaut)) > (i.duree + temps_necessaire_se_rendre_vers_la_quete(i)))
                     queteParDefaut = i;
             }
+
             quete_a_ete_realise(queteParDefaut);
 
         }
@@ -191,7 +199,7 @@ public class AlgorithmeLV1 {
      * on scanne la liste d'entier contenant le numéro des quetes pour faire la quete 0
      * et on fait les quetes faisables des que possible.
      */
-    public void decisionGloutonne(){
+    public void decisionEfficace(){
         for (Quete i: listeQuetes){
             if (i.numero == 0){
                 quetesRecherchePourX2(i,listeQuetes);
@@ -207,6 +215,22 @@ public class AlgorithmeLV1 {
                 }
             }
         }
+    }
+
+    /**
+     * Cette algorithme réalise toutes les quetes les plus proches realisable tant que la quete 0 n'est pas réalisable
+     * puis l'a réalise dès que possible.
+     */
+    public void decisionEfficaceGlouton(){
+        while (!queteEstRealisable(listeQuetes.get(getIndexOfQuete0()))) {
+            Quete queteParDefaut = ensemblesQuetesFaisables(listeQuetes).get(0);
+            for (Quete i : ensemblesQuetesFaisables(listeQuetes)){
+                if (temps_necessaire_se_rendre_vers_la_quete(i)<= temps_necessaire_se_rendre_vers_la_quete(queteParDefaut))
+                    queteParDefaut = i;
+            }
+            quete_a_ete_realise(queteParDefaut);
+        }
+        quete_a_ete_realise((listeQuetes.get(getIndexOfQuete0())));
     }
 
     @Override

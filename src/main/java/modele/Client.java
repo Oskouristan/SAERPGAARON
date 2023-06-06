@@ -11,10 +11,11 @@ public class Client {
         ArrayList<Quete> ListeDesQuetes = Scenario.getProvQuetes();
         //algorithmeLV1.quete_a_ete_realise(ListeDesQuetes.get(4));
 
-        algorithmeLV1.quetesRecherchePourX2(ListeDesQuetes.get(5),ListeDesQuetes);
+        //algorithmeLV1.quetesRecherchePourX2(ListeDesQuetes.get(5),ListeDesQuetes);
 
         //algorithmeLV1.decisionExhaustive(ListeDesQuetes);
+        //System.out.println(algorithmeLV1.toString());
+        algorithmeLV1.decisionEfficaceGlouton();
         System.out.println(algorithmeLV1.toString());
-
     }
 }
