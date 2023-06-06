@@ -22,7 +22,6 @@ public class ControleurAppliRPG implements EventHandler {
         MenuScenario menuScenario = HBoxRoot.getMenuScenario();
 
         if (event.getSource() instanceof Button){
-            System.out.println("it works");
 
             File planningFile = new File("ressources"+File.separator+menuScenario.getScenario());
             AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
@@ -38,19 +37,8 @@ public class ControleurAppliRPG implements EventHandler {
             */
         }
         if (event.getSource() instanceof RadioButton) {
-            menuScenario.setNomScenario((String) ((ToggleButton)event.getSource()).getUserData());
-        }
-
-        /**
-        if (event.getSource() instanceof ToggleButton){
-            DateCalendrier date = (DateCalendrier) ((ToggleButton)event.getSource()).getUserData();
-            reservationPane.setDate(date);
-            dateSel = date;
-            reservationPane.setDate((DateCalendrier) date);
-            affichagePane.setDate(date);
-            affichagePane.updateTab(planning.getReservationSemaine(((DateCalendrier) date).getWeekOfYear()));
-        }
-
-        */
+            menuScenario.setNomScenario((String) ((RadioButton)event.getSource()).getUserData());}
+        if (event.getSource() instanceof ToggleButton) {
+            System.out.println(((String) ((ToggleButton)event.getSource()).getUserData()));}
     }
 }

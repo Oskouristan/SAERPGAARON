@@ -5,24 +5,26 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
-public class MenuScenario extends GridPane {
-    String nomScenario;
+public class MenuDecisions extends GridPane {
+    String decision;
 
 
-    public MenuScenario(){
+    public MenuDecisions(){
+        decision = new String();
         this.setGridLinesVisible(false);
         this.setPadding(new Insets(40));
         this.setHgap(20);
         this.setVgap(20);
 
 
-        ToggleGroup scenario = new ToggleGroup();
 
+        ToggleGroup typeDecisions = new ToggleGroup();
 
-        for (int i =0 ;i<10;i++){
-            RadioButton nouveauBouton = new RadioButton();
-            Integer index = i;
+        for (int i =0 ;i<3;i++){
+            ToggleButton nouveauBouton = new ToggleButton();
+            Integer index = i+1;
             String nomScenario = new String("scenario_"+ index+".txt");
 
             Label label = new Label(nomScenario);
@@ -32,7 +34,7 @@ public class MenuScenario extends GridPane {
             this.add(labelEspace , 3,i,1,1);
             this.add(nouveauBouton,4, i ,5,1);
 
-            nouveauBouton.setToggleGroup(scenario);
+            nouveauBouton.setToggleGroup(typeDecisions);
             nouveauBouton.setUserData(nomScenario);
             nouveauBouton.addEventHandler(ActionEvent.ACTION,HBoxRoot.getControleur());
         }
@@ -45,11 +47,11 @@ public class MenuScenario extends GridPane {
 
     }
     public String getScenario(){
-        return nomScenario;
+        return decision;
     }
     public void setNomScenario(String nom){
-        this.nomScenario =nom;
-        System.out.println("nom "+nomScenario);
+        this.decision =nom;
+        System.out.println("nom "+decision);
     }
 
 }
