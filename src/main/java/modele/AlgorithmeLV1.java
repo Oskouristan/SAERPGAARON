@@ -5,24 +5,75 @@ import vue.HBoxRoot;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static java.lang.Math.abs;
 
 public class AlgorithmeLV1 {
-    ArrayList <Integer> queteRealise;
+
+    List<Integer> queteRealise;
     Integer experience;
-    Integer[] coordonneeIa;
+    List<Integer> coordonneeIa;
     Integer tempsPris;
-    ArrayList <Integer> quetesAFairePourFinir;
-    ArrayList <Quete> listeQuetes;
+    List <Integer> quetesAFairePourFinir;
+    List <Quete> listeQuetes;
+
+
+    public List<Integer> getQueteRealise() {
+        return queteRealise;
+    }
+
+    public void setQueteRealise(List<Integer> queteRealise) {
+        this.queteRealise = queteRealise;
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
+    }
+
+    public List<Integer> getCoordonneeIa() {
+        return coordonneeIa;
+    }
+
+    public void setCoordonneeIa(List<Integer> coordonneeIa) {
+        this.coordonneeIa = coordonneeIa;
+    }
+
+    public Integer getTempsPris() {
+        return tempsPris;
+    }
+
+    public void setTempsPris(Integer tempsPris) {
+        this.tempsPris = tempsPris;
+    }
+
+    public List<Integer> getQuetesAFairePourFinir() {
+        return quetesAFairePourFinir;
+    }
+
+    public void setQuetesAFairePourFinir(List<Integer> quetesAFairePourFinir) {
+        this.quetesAFairePourFinir = quetesAFairePourFinir;
+    }
+
+    public List<Quete> getListeQuetes() {
+        return listeQuetes;
+    }
+
+    public void setListeQuetes(List<Quete> listeQuetes) {
+        this.listeQuetes = listeQuetes;
+    }
 
     public AlgorithmeLV1(File planningFile){
         tempsPris = 0;
         experience = 0;
         queteRealise = new ArrayList<>();
-        coordonneeIa = new Integer[2];
-        coordonneeIa[0] = 0;
-        coordonneeIa[1] = 0;
+        coordonneeIa = new ArrayList<>(2);
+        coordonneeIa.add(0);
+        coordonneeIa.add(0);
 
         quetesAFairePourFinir = new ArrayList<>();
 
@@ -71,8 +122,8 @@ public class AlgorithmeLV1 {
      */
     public int temps_necessaire_se_rendre_vers_la_quete(Quete quete){
         int[] queteCoordonnee = quete.coordonnee;
-        int Xpas = abs(coordonneeIa[0] - queteCoordonnee[0]);
-        int Ypas = abs(coordonneeIa[1] - queteCoordonnee[1]);
+        int Xpas = abs(coordonneeIa.get(0) - queteCoordonnee[0]);
+        int Ypas = abs(coordonneeIa.get(1) - queteCoordonnee[1]);
         return Xpas+Ypas;
     }
 
@@ -86,13 +137,13 @@ public class AlgorithmeLV1 {
 
         tempsPris = tempsPris + temps_necessaire_se_rendre_vers_la_quete(quete) + quete.duree;
 
-        coordonneeIa[0] = quete.coordonnee[0];
-        coordonneeIa[1] = quete.coordonnee[1];
+        coordonneeIa.set(0, quete.coordonnee[0]);
+        coordonneeIa.set(1, quete.coordonnee[1]);
 
     }
 
-    public ArrayList<Quete> ensemblesQuetesFaisables(ArrayList <Quete> provQuetes){
-        ArrayList<Quete> quetesFaisables = new ArrayList<>();
+    public List<Quete> ensemblesQuetesFaisables(List <Quete> provQuetes){
+        List<Quete> quetesFaisables = new ArrayList<>();
         for(Quete i : provQuetes){
             if((!queteRealise.contains(i.numero)) && (queteEstRealisable(i)) ){
                 quetesFaisables.add(i);
@@ -101,14 +152,14 @@ public class AlgorithmeLV1 {
         return quetesFaisables;
     }
 
-    public boolean ilResteDesQuetes(ArrayList <Quete> provQuetes){
+    public boolean ilResteDesQuetes(List <Quete> provQuetes){
         for (Quete i : provQuetes)
             if(!queteRealise.contains(i.numero))
                 return true;
         return false;
         }
 
-    public void quetesRecherchePourX2 (Quete quete,ArrayList <Quete> provQuetes){
+    public void quetesRecherchePourX2 (Quete quete,List <Quete> provQuetes){
         if (!quetesAFairePourFinir.contains(quete.numero)){
             quetesAFairePourFinir.add(quete.numero);
             if (quete.aDesConditions()){
@@ -166,7 +217,7 @@ public class AlgorithmeLV1 {
 
     /**
      * Cette fonction decisionExhaustivesEtGloutonne utilise un champ de cette classe (listeQuetes) qui est un objet de type
-     * ArrayList contenant des objets quetes
+     * List contenant des objets quetes
      * Tant que la fonction ilResteDesQuetes est vrai on crée un ensemble des quêtes faisables
      * à partir de la liste provQuetes puis on prend la première quete qu'il y a dans cet ensemble des quetes faisables
      * et on la compare avec les quetes restantes de la liste des quetesFaisables pour voir laquelle a la
@@ -177,7 +228,7 @@ public class AlgorithmeLV1 {
 
             //HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
 
-            ArrayList<Quete> quetesFaisables = ensemblesQuetesFaisables(listeQuetes);
+            List<Quete> quetesFaisables = ensemblesQuetesFaisables(listeQuetes);
             Quete queteParDefaut = quetesFaisables.get(0);
 
             for (Quete i : quetesFaisables) {
@@ -188,7 +239,7 @@ public class AlgorithmeLV1 {
             quete_a_ete_realise(queteParDefaut);
 
         }
-        //HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
+        HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
     }
     /**
      * l'objectif de cette méthode est de finir la quête 0 le plus vite
@@ -199,24 +250,6 @@ public class AlgorithmeLV1 {
      * on scanne la liste d'entier contenant le numéro des quetes pour faire la quete 0
      * et on fait les quetes faisables des que possible.
      */
-    public void decisionEfficace(){
-        for (Quete i: listeQuetes){
-            if (i.numero == 0){
-                quetesRecherchePourX2(i,listeQuetes);
-            }
-        }
-        while (!queteRealise.contains(0)){
-            for (int x : quetesAFairePourFinir){
-                for (Quete y  : listeQuetes) {
-                    if (y.numero == x){
-                        if (queteEstRealisable(y)){
-                            quete_a_ete_realise(y);}
-                    }
-                }
-            }
-        }
-    }
-
     /**
      * Cette algorithme réalise toutes les quetes les plus proches realisable tant que la quete 0 n'est pas réalisable
      * puis l'a réalise dès que possible.
@@ -241,7 +274,7 @@ public class AlgorithmeLV1 {
     public void decisionEfficaceEnFonctionDesQuetes(){
         while (!queteEstRealisable(listeQuetes.get(getIndexOfQuete0()))) {
             quetesRecherchePourX2((listeQuetes.get(getIndexOfQuete0())),listeQuetes);
-            ArrayList <Quete> listeQuetesFaisable = new ArrayList<>();
+            List <Quete> listeQuetesFaisable = new ArrayList<>();
             for(Quete i : listeQuetes){
                 if(!queteRealise.contains(i.numero) && quetesAFairePourFinir.contains(i.numero)){
                     listeQuetesFaisable.add(i);
@@ -268,7 +301,7 @@ public class AlgorithmeLV1 {
         return "AlgorithmeLV1{" +
                 "queteRealise=" + queteRealise +
                 ", experience=" + experience +
-                ", coordonneeIa=" + Arrays.toString(coordonneeIa) +
+                ", coordonneeIa=" + coordonneeIa.toString() +
                 ", tempsPris=" + tempsPris +
                 ", quetesAFairePourFinir=" + quetesAFairePourFinir +
                 '}';

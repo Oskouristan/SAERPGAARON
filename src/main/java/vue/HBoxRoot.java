@@ -1,10 +1,7 @@
 package vue;
-import controleur.ControleurAppliRPG;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import modele.*;
 
-import java.io.File;
+import controleur.ControleurAppliRPG;
+import javafx.scene.layout.HBox;
 
 
 public class HBoxRoot extends HBox {

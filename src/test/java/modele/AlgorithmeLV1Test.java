@@ -59,8 +59,8 @@ public class AlgorithmeLV1Test {
         algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(3));
 
         //Test pour la quete numéro 1
-        assertEquals(3, algorithmeLV1.coordonneeIa[0]);
-        assertEquals(1, algorithmeLV1.coordonneeIa[1]);
+        assertEquals(3, algorithmeLV1.coordonneeIa.get(0));
+        assertEquals(1, algorithmeLV1.coordonneeIa.get(1));
         assertEquals(2, algorithmeLV1.experience);
         assertEquals(54, algorithmeLV1.tempsPris);
         ArrayList <Integer> quetesFaites = new ArrayList <Integer>();
@@ -68,8 +68,8 @@ public class AlgorithmeLV1Test {
         assertEquals( quetesFaites, algorithmeLV1.queteRealise);
 
         algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(4));
-        assertEquals(4, algorithmeLV1.coordonneeIa[0]);
-        assertEquals(0, algorithmeLV1.coordonneeIa[1]);
+        assertEquals(4, algorithmeLV1.coordonneeIa.get(0));
+        assertEquals(0, algorithmeLV1.coordonneeIa.get(1));
         assertEquals(4, algorithmeLV1.experience);
         assertEquals(156, algorithmeLV1.tempsPris);
         quetesFaites.add(4);

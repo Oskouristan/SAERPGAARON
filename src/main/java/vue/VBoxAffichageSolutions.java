@@ -23,10 +23,10 @@ public class VBoxAffichageSolutions extends VBox {
         TableColumn <AlgorithmeLV1, Quete> coordonneeIa = new TableColumn<>("coordonnée IA");
         TableColumn <AlgorithmeLV1, Quete> tempsPris = new TableColumn<>("temps pris");
 
-        queteRealise.setCellValueFactory(new PropertyValueFactory<>("minitest1"));
-        expTotale.setCellValueFactory(new PropertyValueFactory<>("minitest2"));
-        coordonneeIa.setCellValueFactory(new PropertyValueFactory<>("minitest3"));
-        tempsPris.setCellValueFactory(new PropertyValueFactory<>("minitest3"));
+        queteRealise.setCellValueFactory(new PropertyValueFactory<>("queteRealise"));
+        expTotale.setCellValueFactory(new PropertyValueFactory<>("experience"));
+        coordonneeIa.setCellValueFactory(new PropertyValueFactory<>("coordonneeIa"));
+        tempsPris.setCellValueFactory(new PropertyValueFactory<>("tempsPris"));
 
         tableDesResultats.getColumns().add(queteRealise);
         tableDesResultats.getColumns().add(expTotale);
