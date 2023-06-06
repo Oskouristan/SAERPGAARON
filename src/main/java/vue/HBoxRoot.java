@@ -8,9 +8,9 @@ import java.io.File;
 
 
 public class HBoxRoot extends HBox {
-    static ControleurAppliRPG controleurAppliRPG;
-    static VBoxAffichageSolutions vBoxAffichageSolutions;
-    static MenuScenario menuScenario;
+    static private ControleurAppliRPG controleurAppliRPG;
+    static private VBoxAffichageSolutions vBoxAffichageSolutions;
+    static private MenuScenario menuScenario;
 
 
     public HBoxRoot() {

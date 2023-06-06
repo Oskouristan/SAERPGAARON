@@ -3,6 +3,7 @@ package controleur;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleButton;
 import modele.*;
 import modele.LectureFichierTexte;
@@ -13,6 +14,7 @@ import java.io.File;
 
 public class ControleurAppliRPG implements EventHandler {
 
+
     @Override
     public void handle(Event event) {
 
@@ -21,7 +23,8 @@ public class ControleurAppliRPG implements EventHandler {
 
         if (event.getSource() instanceof Button){
             System.out.println("it works");
-            File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
+
+            File planningFile = new File("ressources"+File.separator+menuScenario.getScenario());
             AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
             algorithmeLV1.decisionExhaustivesEtGloutonne();
             /**
@@ -33,6 +36,9 @@ public class ControleurAppliRPG implements EventHandler {
                 throw new RuntimeException(e);}
             LectureEcriture.ecriture(HBoxRoot.getPlanningFile(),planning);
             */
+        }
+        if (event.getSource() instanceof RadioButton) {
+            menuScenario.setNomScenario((String) ((ToggleButton)event.getSource()).getUserData());
         }
 
         /**

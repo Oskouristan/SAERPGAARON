@@ -168,7 +168,7 @@ public class AlgorithmeLV1 {
     public void decisionExhaustivesEtGloutonne () {
         while (ilResteDesQuetes(listeQuetes)) {
 
-            HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
+            //HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
 
             ArrayList<Quete> quetesFaisables = ensemblesQuetesFaisables(listeQuetes);
             Quete queteParDefaut = quetesFaisables.get(0);
@@ -178,10 +178,10 @@ public class AlgorithmeLV1 {
                     queteParDefaut = i;
             }
             quete_a_ete_realise(queteParDefaut);
-            //return queteParDefaut.numero;
-        }
-    }
 
+        }
+        //HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
+    }
     /**
      * l'objectif de cette méthode est de finir la quête 0 le plus vite
      * pour cela elle utilise le champs listeQuetes qui est une liste d'objet Quete nommé provQuetes
