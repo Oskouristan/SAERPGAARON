@@ -7,11 +7,11 @@ import javafx.scene.layout.VBox;
 import modele.AlgorithmeLV1;
 import modele.Quete;
 
+import java.io.File;
+
 public class VBoxAffichageSolutions extends VBox {
     TableView <AlgorithmeLV1> tableDesResultats;
     public VBoxAffichageSolutions (){
-        //File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
-        //AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
 
         tableDesResultats = new TableView<>();
 
@@ -31,6 +31,15 @@ public class VBoxAffichageSolutions extends VBox {
         tableDesResultats.getColumns().add(tempsPris);
 
         this.getChildren().add(tableDesResultats);
+        /**
+        File planningFile = new File("ressources"+File.separator+"scenario_0.txt");
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
+        algorithmeLV1.decisionExhaustivesEtGloutonne();
+
+        */
+    }
+    public void effacerSolutionPrecedente(){
+        tableDesResultats.getItems().clear();
     }
     public void updateTab(AlgorithmeLV1 algorithmeLV1){
         tableDesResultats.getItems().clear();

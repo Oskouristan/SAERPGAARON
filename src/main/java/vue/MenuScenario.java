@@ -2,14 +2,17 @@ package vue;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+
+import java.util.ArrayList;
 
 public class MenuScenario extends GridPane {
     String nomScenario;
+
+    ComboBox choixDecision;
+
+    int indexChoix ;
 
 
     public MenuScenario(){
@@ -21,28 +24,48 @@ public class MenuScenario extends GridPane {
 
         ToggleGroup scenario = new ToggleGroup();
 
+        Label labelScenario= new Label("Scenario");
+        this.add(labelScenario,2,0,5,1);
 
-        for (int i =0 ;i<10;i++){
-            RadioButton nouveauBouton = new RadioButton();
-            Integer index = i;
-            String nomScenario = new String("scenario_"+ index+".txt");
+        int index = 0;
+        for(int i =1 ;i<4;i++){
 
-            Label label = new Label(nomScenario);
-            Label labelEspace = new Label("  -->  ");
+            for(int j =0 ;j<24;j=j+6){
+                if (index<11) {
+                    RadioButton nouveauBouton = new RadioButton();
+                    String nomScenario = new String("scenario_" + index + ".txt");
+                    index++;
 
-            this.add(label,1, i,2,1);
-            this.add(labelEspace , 3,i,1,1);
-            this.add(nouveauBouton,4, i ,5,1);
+                    Label label = new Label(nomScenario);
 
-            nouveauBouton.setToggleGroup(scenario);
-            nouveauBouton.setUserData(nomScenario);
-            nouveauBouton.addEventHandler(ActionEvent.ACTION,HBoxRoot.getControleur());
+                    this.add(label, j, i, 5, 1);
+                    this.add(nouveauBouton, j +4, i, 1, 1);
+
+                    nouveauBouton.setToggleGroup(scenario);
+                    nouveauBouton.setUserData(nomScenario);
+                    nouveauBouton.addEventHandler(ActionEvent.ACTION, HBoxRoot.getControleur());
+                }
+            }
         }
+
+        Label labelDecision = new Label("Type de Décision");
+        this.add(labelDecision,2,5,5,1);
+
+
+        choixDecision =  new ComboBox();
+        ArrayList <String> choixDecisionPossibles = new ArrayList<>();
+        choixDecisionPossibles.add("decisionExhaustive");
+        choixDecisionPossibles.add("decisionExhaustivesEtGloutonne");
+        choixDecisionPossibles.add("decisionEfficaceGlouton");
+        choixDecisionPossibles.add("decisionEfficaceEnFonctionDesQuetes");
+
+        for(String typeDecision : choixDecisionPossibles){
+            choixDecision.getItems().add(typeDecision);
+        }
+        this.add(choixDecision, 1,7,8,1);
 
         Button bouttonEnregistrer = new Button("Enregistrer");
         bouttonEnregistrer.addEventHandler(ActionEvent.ACTION, HBoxRoot.getControleur());
-
-
         this.add(bouttonEnregistrer,5,10,5,1);
 
     }
@@ -51,8 +74,13 @@ public class MenuScenario extends GridPane {
     }
     public void setNomScenario(String nom){
         this.nomScenario =nom;
-        System.out.println("nom "+nomScenario);
+        //System.out.println("nom "+nomScenario);
     }
+    public int getIndexChoix(){
+        indexChoix = choixDecision.getSelectionModel().getSelectedIndex();
+        return indexChoix;
+    }
+
 
 }
 

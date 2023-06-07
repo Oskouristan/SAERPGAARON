@@ -26,7 +26,7 @@ public class Client {
         System.out.println(algorithmeLV2.toString());
 
         AlgorithmeLV1 algorithmeLV3 =new AlgorithmeLV1(scenarioFile);
-        algorithmeLV3.decisionEfficaceGlouton();
+        algorithmeLV3.decisionExhaustivesEtGloutonne();
         System.out.println(algorithmeLV3.toString());
     }
 }

@@ -8,14 +8,11 @@ public class HBoxRoot extends HBox {
     static private ControleurAppliRPG controleurAppliRPG;
     static private VBoxAffichageSolutions vBoxAffichageSolutions;
     static private MenuScenario menuScenario;
-    static private MenuDecisions menuDecisions;
-
 
     public HBoxRoot() {
         controleurAppliRPG = new ControleurAppliRPG();
         vBoxAffichageSolutions = new VBoxAffichageSolutions();
         menuScenario = new MenuScenario();
-        menuDecisions = new MenuDecisions();
 
         getChildren().addAll(menuScenario,vBoxAffichageSolutions);
     }
@@ -29,7 +26,7 @@ public class HBoxRoot extends HBox {
     public static MenuScenario getMenuScenario(){
         return menuScenario;
     }
-    public static MenuDecisions getMenuDecisions(){return menuDecisions;}
+
 }
 
 

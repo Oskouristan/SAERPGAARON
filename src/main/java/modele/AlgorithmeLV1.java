@@ -17,55 +17,6 @@ public class AlgorithmeLV1 {
     List <Integer> quetesAFairePourFinir;
     List <Quete> listeQuetes;
 
-
-    public List<Integer> getQueteRealise() {
-        return queteRealise;
-    }
-
-    public void setQueteRealise(List<Integer> queteRealise) {
-        this.queteRealise = queteRealise;
-    }
-
-    public Integer getExperience() {
-        return experience;
-    }
-
-    public void setExperience(Integer experience) {
-        this.experience = experience;
-    }
-
-    public List<Integer> getCoordonneeIa() {
-        return coordonneeIa;
-    }
-
-    public void setCoordonneeIa(List<Integer> coordonneeIa) {
-        this.coordonneeIa = coordonneeIa;
-    }
-
-    public Integer getTempsPris() {
-        return tempsPris;
-    }
-
-    public void setTempsPris(Integer tempsPris) {
-        this.tempsPris = tempsPris;
-    }
-
-    public List<Integer> getQuetesAFairePourFinir() {
-        return quetesAFairePourFinir;
-    }
-
-    public void setQuetesAFairePourFinir(List<Integer> quetesAFairePourFinir) {
-        this.quetesAFairePourFinir = quetesAFairePourFinir;
-    }
-
-    public List<Quete> getListeQuetes() {
-        return listeQuetes;
-    }
-
-    public void setListeQuetes(List<Quete> listeQuetes) {
-        this.listeQuetes = listeQuetes;
-    }
-
     public AlgorithmeLV1(File planningFile){
         tempsPris = 0;
         experience = 0;
@@ -180,12 +131,9 @@ public class AlgorithmeLV1 {
                     for (Quete j : provQuetes){
                         if (j.numero == indexPremiereCondition ){
                             quetesRecherchePourX2(j,provQuetes);
-
-
                         }
                         if (j.numero == indexDeuxiemeCondition ){
                             quetesRecherchePourX2(j,provQuetes);
-
                         }
                     }
                 }
@@ -195,10 +143,10 @@ public class AlgorithmeLV1 {
 
 
     /**
-     * Cette fonction renvoie la quête la plus intéréssante à faire en prenant en compte le temps et l'expérience qu'elle apporte
-     * Donner une solution efficace optimale en termes de durée. Ce genre de solution correspond à un speedrun
+     * Cette méthode decisionExhaustive permet à l'algorithme d'executer les quêtes faisables tant que qu'il reste des quetes
+     * et après seulement il execute la quete 0 puisqu'elle est toujours faisable à ce moment là vu que ses preconditions ont
+     * été faites.
      */
-
     public void decisionExhaustive(){
         while ((ilResteDesQuetes(listeQuetes)) && ((listeQuetes.size()-1) <queteRealise.size()) ){
             for (Quete quete : listeQuetes){
@@ -207,11 +155,8 @@ public class AlgorithmeLV1 {
                 }
             }
         }
-        for (Quete quete : listeQuetes){
-            if (quete.numero ==0){
-                quete_a_ete_realise(quete);
-                return;}
-        }
+        quete_a_ete_realise(listeQuetes.get(getIndexOfQuete0()));
+        HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
     }
 
     /**
@@ -225,7 +170,7 @@ public class AlgorithmeLV1 {
     public void decisionExhaustivesEtGloutonne () {
         while (ilResteDesQuetes(listeQuetes)) {
 
-            //HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
+            HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
 
             List<Quete> quetesFaisables = ensemblesQuetesFaisables(listeQuetes);
             Quete queteParDefaut = quetesFaisables.get(0);
@@ -240,15 +185,7 @@ public class AlgorithmeLV1 {
         }
         HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
     }
-    /**
-     * l'objectif de cette méthode est de finir la quête 0 le plus vite
-     * pour cela elle utilise le champs listeQuetes qui est une liste d'objet Quete nommé provQuetes
-     * que l'on va utiliser pour determiner les quetes à faire pour faire la quete
-     * 0 de manière gloutonne et on les stocke le numéro de ces quetes dans le champ
-     * queteAFairePourFinir de l'AlgotihmeLV1 puis tant que la quete 0 n'est pas faites
-     * on scanne la liste d'entier contenant le numéro des quetes pour faire la quete 0
-     * et on fait les quetes faisables des que possible.
-     */
+
     /**
      * Cette algorithme réalise toutes les quetes les plus proches realisable tant que la quete 0 n'est pas réalisable
      * puis l'a réalise dès que possible.
@@ -263,6 +200,8 @@ public class AlgorithmeLV1 {
             quete_a_ete_realise(queteParDefaut);
         }
         quete_a_ete_realise((listeQuetes.get(getIndexOfQuete0())));
+        HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
+
     }
 
     /**
@@ -271,7 +210,10 @@ public class AlgorithmeLV1 {
      */
 
     public void decisionEfficaceEnFonctionDesQuetes(){
+        //HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
         while (!queteEstRealisable(listeQuetes.get(getIndexOfQuete0()))) {
+            //HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
+
             quetesRecherchePourX2((listeQuetes.get(getIndexOfQuete0())),listeQuetes);
             List <Quete> listeQuetesFaisable = new ArrayList<>();
             for(Quete i : listeQuetes){
@@ -289,6 +231,7 @@ public class AlgorithmeLV1 {
 
         }
         quete_a_ete_realise((listeQuetes.get(getIndexOfQuete0())));
+        HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
     }
 
     /**
