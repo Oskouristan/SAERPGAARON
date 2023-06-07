@@ -4,16 +4,42 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AlgorithmeLV1Test {
-
     @Test
+    void testDecisionExhaustive(){
+        File planningFile = new File("ressources"+File.separator+"scenario_0.txt");
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
+        algorithmeLV1.decisionExhaustive();
+        assertEquals(16,algorithmeLV1.experience);
+
+    }
+    @Test
+    void testGetIndexOfQuete0() {
+        {
+            File planningFile = new File("ressources" + File.separator + "scenario_1.txt");
+            AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
+            assertEquals(5, algorithmeLV1.getIndexOfQuete0());
+        }
+
+        {
+            File planningFile1 = new File("ressources" + File.separator + "scenario_10.txt");
+            AlgorithmeLV1 algorithmeLV1bis = new AlgorithmeLV1(planningFile1);
+            System.out.println(algorithmeLV1bis.getIndexOfQuete0());
+            assertEquals(18, algorithmeLV1bis.getIndexOfQuete0());
+        }
+
+
+    }
+
+        @Test
     void testQueteEstRealisable() {
         File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
         AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
-        ArrayList<Quete> ListeDesQuetes = Scenario.getProvQuetes();
+        List<Quete> ListeDesQuetes = algorithmeLV1.listeQuetes;
         //assert algorithmeLV1.queteEstRealisable(ListeDesQuetes.get(0));
 
 
@@ -28,7 +54,7 @@ public class AlgorithmeLV1Test {
     void testTemps_necessaire_se_rendre_vers_la_quete() {
         File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
         AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
-        ArrayList<Quete> ListeDesQuetes = Scenario.getProvQuetes();
+        List<Quete> ListeDesQuetes = algorithmeLV1.listeQuetes;
 
         assertEquals(4, algorithmeLV1.temps_necessaire_se_rendre_vers_la_quete(ListeDesQuetes.get(0)));
         assertEquals(7, algorithmeLV1.temps_necessaire_se_rendre_vers_la_quete(ListeDesQuetes.get(1)));
@@ -44,10 +70,20 @@ public class AlgorithmeLV1Test {
         AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
 
         ArrayList<Quete> quetesFaisables = new ArrayList<>();
-        for (Quete i : Scenario.getProvQuetes())
+        for (Quete i : algorithmeLV1.getListeQuetes())
             if ((i.numero == 1) || (i.numero == 4))
                 quetesFaisables.add(i);
-        assertEquals(quetesFaisables, algorithmeLV1.ensemblesQuetesFaisables(Scenario.getProvQuetes()));
+        assertEquals(quetesFaisables, algorithmeLV1.ensemblesQuetesFaisables(algorithmeLV1.getListeQuetes()));
+
+        File planningFile1 = new File("ressources"+File.separator+"scenario_0.txt");
+        AlgorithmeLV1 algorithmeLV1bis = new AlgorithmeLV1(planningFile1);
+
+        ArrayList<Quete> quetesFaisablesbis = new ArrayList<>();
+        for (Quete i : algorithmeLV1bis.getListeQuetes())
+            if ((i.numero == 1))
+                quetesFaisablesbis.add(i);
+        assertEquals(quetesFaisablesbis, algorithmeLV1bis.ensemblesQuetesFaisables(algorithmeLV1bis.getListeQuetes()));
+
 
     }
 
@@ -55,7 +91,7 @@ public class AlgorithmeLV1Test {
     void testQuete_a_ete_realise() {
         File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
         AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
-        algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(3));
+        algorithmeLV1.quete_a_ete_realise(algorithmeLV1.getListeQuetes().get(3));
 
         //Test pour la quete numéro 1
         assertEquals(3, algorithmeLV1.coordonneeIa.get(0));
@@ -66,7 +102,7 @@ public class AlgorithmeLV1Test {
         quetesFaites.add(1);
         assertEquals( quetesFaites, algorithmeLV1.queteRealise);
 
-        algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(4));
+        algorithmeLV1.quete_a_ete_realise(algorithmeLV1.getListeQuetes().get(4));
         assertEquals(4, algorithmeLV1.coordonneeIa.get(0));
         assertEquals(0, algorithmeLV1.coordonneeIa.get(1));
         assertEquals(4, algorithmeLV1.experience);
@@ -78,33 +114,29 @@ public class AlgorithmeLV1Test {
     void testQuetesRecherchePourX2(){
         File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
         AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
-        algorithmeLV1.quetesRecherchePourX2(Scenario.getProvQuetes().get(5),Scenario.getProvQuetes());
+        algorithmeLV1.quetesRecherchePourX2(algorithmeLV1.getListeQuetes().get(5),algorithmeLV1.getListeQuetes());
         ArrayList <Integer> quetesAFaire = new ArrayList<>();
         quetesAFaire.add(0);
         quetesAFaire.add(3);
         quetesAFaire.add(1);
         quetesAFaire.add(4);
         assertEquals(quetesAFaire,algorithmeLV1.quetesAFairePourFinir);
-
-        System.out.println("Work work work");
     }
 
     @Test
     void testIlResteDesQuetes(){
         File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
         AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
-        assertTrue(algorithmeLV1.ilResteDesQuetes(Scenario.getProvQuetes()));
+        assertTrue(algorithmeLV1.ilResteDesQuetes(algorithmeLV1.getListeQuetes()));
 
-        algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(0));
-        algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(1));
-        algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(2));
-        algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(3));
-        algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(4));
-        algorithmeLV1.quete_a_ete_realise(Scenario.getProvQuetes().get(5));
+        algorithmeLV1.quete_a_ete_realise(algorithmeLV1.getListeQuetes().get(0));
+        algorithmeLV1.quete_a_ete_realise(algorithmeLV1.getListeQuetes().get(1));
+        algorithmeLV1.quete_a_ete_realise(algorithmeLV1.getListeQuetes().get(2));
+        algorithmeLV1.quete_a_ete_realise(algorithmeLV1.getListeQuetes().get(3));
+        algorithmeLV1.quete_a_ete_realise(algorithmeLV1.getListeQuetes().get(4));
+        algorithmeLV1.quete_a_ete_realise(algorithmeLV1.getListeQuetes().get(5));
 
-        assertFalse(algorithmeLV1.ilResteDesQuetes(Scenario.getProvQuetes()));
-
-        System.out.println("I'm good yeah i'm feelin all right");
+        assertFalse(algorithmeLV1.ilResteDesQuetes(algorithmeLV1.getListeQuetes()));
     }
 
 }

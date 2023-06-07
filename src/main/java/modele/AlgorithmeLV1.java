@@ -32,6 +32,10 @@ public class AlgorithmeLV1 {
         System.out.println(scenario);
     }
 
+    public Quete getQueteByIndex(int index){
+        return listeQuetes.stream().filter(q -> q.numero==index).findFirst().get();
+    }
+
     public int getIndexOfQuete0(){
         for (Quete i: listeQuetes){
             if (i.numero==0)
@@ -148,7 +152,7 @@ public class AlgorithmeLV1 {
      * été faites.
      */
     public void decisionExhaustive(){
-        while ((ilResteDesQuetes(listeQuetes)) && ((listeQuetes.size()-1) <queteRealise.size()) ){
+        while ((ilResteDesQuetes(listeQuetes)) && ((listeQuetes.size()-1) >queteRealise.size()) ){
             for (Quete quete : listeQuetes){
                 if ((queteEstRealisable(quete)) && (quete.numero!=0)){
                     quete_a_ete_realise(quete);
@@ -156,21 +160,19 @@ public class AlgorithmeLV1 {
             }
         }
         quete_a_ete_realise(listeQuetes.get(getIndexOfQuete0()));
-        HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
+        //HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
     }
 
     /**
-     * Cette fonction decisionExhaustivesEtGloutonne utilise un champ de cette classe (listeQuetes) qui est un objet de type
+     * Cette fonction decisionExhaustivesOptimaleEnTermeDeDeplacement utilise un champ de cette classe (listeQuetes) qui est un objet de type
      * List contenant des objets quetes
      * Tant que la fonction ilResteDesQuetes est vrai on crée un ensemble des quêtes faisables
      * à partir de la liste provQuetes puis on prend la première quete qu'il y a dans cet ensemble des quetes faisables
      * et on la compare avec les quetes restantes de la liste des quetesFaisables pour voir laquelle a la
      * distance_pour_se_rendre+ durée la plus courte puis cette quete est réalisé.
      */
-    public void decisionExhaustivesEtGloutonne () {
+    public void decisionExhaustivesOptimaleEnTermeDeDeplacement() {
         while (ilResteDesQuetes(listeQuetes)) {
-
-            HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
 
             List<Quete> quetesFaisables = ensemblesQuetesFaisables(listeQuetes);
             Quete queteParDefaut = quetesFaisables.get(0);
@@ -179,9 +181,7 @@ public class AlgorithmeLV1 {
                 if ((queteParDefaut.duree + temps_necessaire_se_rendre_vers_la_quete(queteParDefaut)) > (i.duree + temps_necessaire_se_rendre_vers_la_quete(i)))
                     queteParDefaut = i;
             }
-
             quete_a_ete_realise(queteParDefaut);
-
         }
         HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
     }
@@ -248,4 +248,24 @@ public class AlgorithmeLV1 {
                 ", quetesAFairePourFinir=" + quetesAFairePourFinir +
                 '}';
     }
+
+    public List<Integer> getQueteRealise(){
+        return queteRealise;
+    };
+    public Integer getExperience(){
+        return experience;
+    }
+    public List<Integer> getCoordonneeIa(){
+        return coordonneeIa;
+    };
+    public Integer getTempsPris(){
+        return tempsPris;
+    }
+    public List <Integer> getQuetesAFairePourFinir(){
+        return quetesAFairePourFinir;
+    }
+    public List <Quete> getListeQuetes(){
+        return listeQuetes;
+    };
+
 }

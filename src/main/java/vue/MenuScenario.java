@@ -55,7 +55,7 @@ public class MenuScenario extends GridPane {
         choixDecision =  new ComboBox();
         ArrayList <String> choixDecisionPossibles = new ArrayList<>();
         choixDecisionPossibles.add("decisionExhaustive");
-        choixDecisionPossibles.add("decisionExhaustivesEtGloutonne");
+        choixDecisionPossibles.add("decisionExhaustivesOptimaleEnTermeDeDeplacement");
         choixDecisionPossibles.add("decisionEfficaceGlouton");
         choixDecisionPossibles.add("decisionEfficaceEnFonctionDesQuetes");
 

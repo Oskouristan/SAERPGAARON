@@ -11,7 +11,7 @@ public class ApplicationRPG extends Application {
          * On instancie au départ la classe HBoxRoot qui sera contenu dans la scene
          */
         HBoxRoot root = new HBoxRoot();
-        Scene scene = new Scene(root,900,460);
+        Scene scene = new Scene(root,980,460);
         //File [] fichiersCss = new File("css").listFiles();
         //for (File fichier : fichiersCss) {
             //scene.getStylesheets().add(fichier.toURI().toString());}

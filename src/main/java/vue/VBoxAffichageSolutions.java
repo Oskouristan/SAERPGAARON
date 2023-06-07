@@ -19,16 +19,20 @@ public class VBoxAffichageSolutions extends VBox {
         TableColumn <AlgorithmeLV1, Quete> expTotale = new TableColumn<>("expérience totale");
         TableColumn <AlgorithmeLV1, Quete> coordonneeIa = new TableColumn<>("coordonnée IA");
         TableColumn <AlgorithmeLV1, Quete> tempsPris = new TableColumn<>("temps pris");
+        TableColumn <AlgorithmeLV1, Quete> listeQuetes = new TableColumn<>("liste des quetes");
 
         queteRealise.setCellValueFactory(new PropertyValueFactory<>("queteRealise"));
         expTotale.setCellValueFactory(new PropertyValueFactory<>("experience"));
         coordonneeIa.setCellValueFactory(new PropertyValueFactory<>("coordonneeIa"));
         tempsPris.setCellValueFactory(new PropertyValueFactory<>("tempsPris"));
+        listeQuetes.setCellValueFactory(new PropertyValueFactory<>("listeQuetes"));
+
 
         tableDesResultats.getColumns().add(queteRealise);
         tableDesResultats.getColumns().add(expTotale);
         tableDesResultats.getColumns().add(coordonneeIa);
         tableDesResultats.getColumns().add(tempsPris);
+        tableDesResultats.getColumns().add(listeQuetes);
 
         this.getChildren().add(tableDesResultats);
         /**
@@ -39,14 +43,14 @@ public class VBoxAffichageSolutions extends VBox {
         */
     }
     public void effacerSolutionPrecedente(){
+
+            System.out.println("effacerSolutionPrecedente");
         tableDesResultats.getItems().clear();
     }
     public void updateTab(AlgorithmeLV1 algorithmeLV1){
         tableDesResultats.getItems().clear();
         if (algorithmeLV1 == null) {return;}
         tableDesResultats.getItems().add(algorithmeLV1);
-
-        System.out.println(tableDesResultats.getItems().toString());
     }
 
 
