@@ -27,7 +27,6 @@ public class VBoxAffichageSolutions extends VBox {
         tempsPris.setCellValueFactory(new PropertyValueFactory<>("tempsPris"));
         listeQuetes.setCellValueFactory(new PropertyValueFactory<>("listeQuetes"));
 
-
         tableDesResultats.getColumns().add(queteRealise);
         tableDesResultats.getColumns().add(expTotale);
         tableDesResultats.getColumns().add(coordonneeIa);
@@ -43,8 +42,6 @@ public class VBoxAffichageSolutions extends VBox {
         */
     }
     public void effacerSolutionPrecedente(){
-
-            System.out.println("effacerSolutionPrecedente");
         tableDesResultats.getItems().clear();
     }
     public void updateTab(AlgorithmeLV1 algorithmeLV1){

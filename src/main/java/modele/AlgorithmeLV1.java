@@ -32,10 +32,15 @@ public class AlgorithmeLV1 {
         System.out.println(scenario);
     }
 
-    public Quete getQueteByIndex(int index){
-        return listeQuetes.stream().filter(q -> q.numero==index).findFirst().get();
-    }
+    //public Quete getQueteByIndex(int index){
+    //    return listeQuetes.stream().filter(q -> q.numero==index).findFirst().get();
+    //}
 
+    /**
+     * Cette fonction retourne l'index de la quête 0 si elle dans la liste des quêtes sinon
+     * elle retourne 0 mais puisque tous les scénarios ont une quêtes 0 la fonction devrait toujours
+     * fonctionner
+     */
     public int getIndexOfQuete0(){
         for (Quete i: listeQuetes){
             if (i.numero==0)
@@ -160,7 +165,6 @@ public class AlgorithmeLV1 {
             }
         }
         quete_a_ete_realise(listeQuetes.get(getIndexOfQuete0()));
-        //HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
     }
 
     /**
@@ -183,7 +187,6 @@ public class AlgorithmeLV1 {
             }
             quete_a_ete_realise(queteParDefaut);
         }
-        HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
     }
 
     /**
@@ -200,7 +203,6 @@ public class AlgorithmeLV1 {
             quete_a_ete_realise(queteParDefaut);
         }
         quete_a_ete_realise((listeQuetes.get(getIndexOfQuete0())));
-        HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
 
     }
 
@@ -231,7 +233,7 @@ public class AlgorithmeLV1 {
 
         }
         quete_a_ete_realise((listeQuetes.get(getIndexOfQuete0())));
-        HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
+
     }
 
     /**
@@ -249,6 +251,11 @@ public class AlgorithmeLV1 {
                 '}';
     }
 
+    /**
+     * Les fonctions get ci dessous ne sont pas utilisé dans mes classes mais sont nécessaire pour
+     * afficher les champs de l'algorithmeLV1 dans la tableView de la classe affichage solutions.
+     * @return
+     */
     public List<Integer> getQueteRealise(){
         return queteRealise;
     };

@@ -25,7 +25,7 @@ public class ControleurAppliRPG implements EventHandler {
 
             File planningFile = new File("ressources"+File.separator+menuScenario.getScenario());
             AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
-
+            HBoxRoot.getvBoxAffichageSolutions().updateTab(algorithmeLV1);
             //switch(menuScenario.getIndexChoix()) {
             //}
 

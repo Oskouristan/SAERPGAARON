@@ -12,7 +12,7 @@ public class Quete {
     int duree;
     int experience;
     String intitule;
-    Scanner scanner; // fdfsdfsd
+    Scanner scanner;
 
     @Override
     public String toString() {
