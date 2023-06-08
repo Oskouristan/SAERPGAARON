@@ -127,6 +127,7 @@ public class AlgorithmeLV1Test {
     void testIlResteDesQuetes(){
         File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
         AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
+        // test quand aucune quete n'est faite
         assertTrue(algorithmeLV1.ilResteDesQuetes(algorithmeLV1.getListeQuetes()));
 
         algorithmeLV1.quete_a_ete_realise(algorithmeLV1.getListeQuetes().get(0));
@@ -135,10 +136,39 @@ public class AlgorithmeLV1Test {
         algorithmeLV1.quete_a_ete_realise(algorithmeLV1.getListeQuetes().get(3));
         algorithmeLV1.quete_a_ete_realise(algorithmeLV1.getListeQuetes().get(4));
         algorithmeLV1.quete_a_ete_realise(algorithmeLV1.getListeQuetes().get(5));
-
+        // test une fois toutes les quetes ajouté au quetes_réalisés
         assertFalse(algorithmeLV1.ilResteDesQuetes(algorithmeLV1.getListeQuetes()));
+    }
+    @Test
+    void testDecisionEfficaceGlouton(){
+        File planningFile = new File("ressources"+File.separator+"scenario_1.txt");
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
+        algorithmeLV1.decisionEfficaceGlouton();
+
+        ArrayList <Integer>quetesFaisables = new ArrayList<>();
+        quetesFaisables.add(4);
+        quetesFaisables.add(1);
+        quetesFaisables.add(2);
+        quetesFaisables.add(3);
+        quetesFaisables.add(0);
+
+        assertEquals(quetesFaisables, algorithmeLV1.queteRealise);
+    }
+
+    void testDecisionEfficaceEnFonctionDesQuetes() {
+        File planningFile = new File("ressources" + File.separator + "scenario_1.txt");
+        AlgorithmeLV1 algorithmeLV1 = new AlgorithmeLV1(planningFile);
+        algorithmeLV1.decisionEfficaceGlouton();
+
+        ArrayList<Integer> quetesFaisables = new ArrayList<>();
+        quetesFaisables.add(4);
+        quetesFaisables.add(1);
+        quetesFaisables.add(2);
+        quetesFaisables.add(3);
+        quetesFaisables.add(0);
+
+        assertEquals(quetesFaisables, algorithmeLV1.queteRealise);
     }
 
 
-
-}
+    }
