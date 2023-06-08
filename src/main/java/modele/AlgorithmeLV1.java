@@ -48,26 +48,21 @@ public class AlgorithmeLV1 {
         }
         return 0;
     }
-    public Boolean premierePartieEstRealisable(int[] tableau) {
-        return (tableau[0] == 0 && tableau[1] == 0)
-                ||
-                (queteRealise.contains(tableau[0]) || queteRealise.contains(tableau[1]));
-    }
-
-    public Boolean secondePartieEstRealisable(int[] tableau) {
-        return
-                (tableau[2] == 0 && tableau[3] == 0)
-                ||
-                (queteRealise.contains(tableau[2]) || queteRealise.contains(tableau[3]));
-    }
     /**
      * Cette fonction permet de savoir si une quête est réalisable en fonction des quêtes parcouru par l'IA
      * pour cela elle prend un @param quete de type Quete et @return un booléen (true si la quete est faisable false sinon)
      */
     public boolean queteEstRealisable(Quete quete){
         if(!queteRealise.contains(quete.numero)){
-            int[] liste = quete.listePrecondition;
-            return premierePartieEstRealisable(liste) && secondePartieEstRealisable(liste);
+            int[] tableau = quete.listePrecondition;
+
+            return ((tableau[0] == 0 && tableau[1] == 0)
+                    ||
+                    (queteRealise.contains(tableau[0]) || queteRealise.contains(tableau[1])))
+                &&
+                    ((tableau[2] == 0 && tableau[3] == 0)
+                    ||
+                    (queteRealise.contains(tableau[2]) || queteRealise.contains(tableau[3])));
         }
         return false;
     }
@@ -101,6 +96,12 @@ public class AlgorithmeLV1 {
 
     }
 
+    /**
+     * Cette méthode retourne une liste de quete contenant uniquement les quetes faisables
+     * pour cela elle prend en @param provQuetes de type List<Quete> et scanne chaque élément
+     * de cette liste puis si la quete est realisable et qu'elle n'est pas dans le la liste des quetes
+     * qui ont déjà été faites.
+     */
     public List<Quete> ensemblesQuetesFaisables(List <Quete> provQuetes){
         List<Quete> quetesFaisables = new ArrayList<>();
         for(Quete i : provQuetes){
@@ -111,6 +112,12 @@ public class AlgorithmeLV1 {
         return quetesFaisables;
     }
 
+    /**
+     * cette méthode retourne un booléen de si oui ou non il reste des quêtes qui n'ont pas été faites
+     * pour cela elle prend en @param provQuetes
+     * et @return true si il en reste false sinon
+     */
+
     public boolean ilResteDesQuetes(List <Quete> provQuetes){
         for (Quete i : provQuetes)
             if(!queteRealise.contains(i.numero))
@@ -118,6 +125,11 @@ public class AlgorithmeLV1 {
         return false;
         }
 
+    /**
+     * Cette méthode prend 2 paramètres( @param quete de type Quete et @param provQuetes de type
+     * List<Quete> ) cette méthode a pour but d'instancier le champs queteAFairePourFinir avec une
+     * liste de quete qui contient les quetes qui sont essentielles pour finir la quete 0;
+     */
     public void quetesRecherchePourX2 (Quete quete,List <Quete> provQuetes){
         if (!quetesAFairePourFinir.contains(quete.numero)){
             quetesAFairePourFinir.add(quete.numero);
@@ -212,9 +224,7 @@ public class AlgorithmeLV1 {
      */
 
     public void decisionEfficaceEnFonctionDesQuetes(){
-        //HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
         while (!queteEstRealisable(listeQuetes.get(getIndexOfQuete0()))) {
-            //HBoxRoot.getvBoxAffichageSolutions().updateTab(this);
 
             quetesRecherchePourX2((listeQuetes.get(getIndexOfQuete0())),listeQuetes);
             List <Quete> listeQuetesFaisable = new ArrayList<>();
